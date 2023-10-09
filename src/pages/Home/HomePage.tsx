@@ -1,7 +1,7 @@
 import List from './List'
 import Card from './Card'
 import Controls from './Controls/Controls'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { CardListItem } from './Card'
 import { useCountries } from '../../services/useCountries'
@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
   const [filtredCountries, setFiltredCountries] = useState<Country[]>([])
   const navigate = useNavigate()
 
-  const handleSearch = (search: string = "", region: string = "") => {
+  const handleSearch = useCallback((search: string = "", region: string = "") => {
     let data = [...countries]
     if (region) {
       data = data.filter(country => country.region.includes(region))
@@ -31,12 +31,12 @@ const HomePage: React.FC = () => {
     }
     
     setFiltredCountries(data)
-  }
+  }, [countries])
 
   useEffect(() => {
     if (!isLoading)
     handleSearch()
-  }, [countries])
+  }, [countries, handleSearch, isLoading])
 
   if (isLoading) {
     return (

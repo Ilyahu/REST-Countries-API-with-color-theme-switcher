@@ -43,7 +43,7 @@ const BorderCountries = ({borderCodes}: BorderProps) => {
   const {data: borderCountries, isLoading, error} = useFilteredCountries(borderCodes, !!borderCodes.length)
   const navigate = useNavigate()
 
-  if (isLoading) {
+  if (!!borderCodes.length && isLoading) {
     return <Skeleton/>
   }
 

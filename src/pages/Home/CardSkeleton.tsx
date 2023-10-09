@@ -32,8 +32,8 @@ export type CardListItem = {
 
 const CardSkeleton = ({cards}: {cards:number}) => {
   return (
-    Array(cards).fill(null).map(() => (
-     <Wrapper>
+    Array(cards).fill(null).map((_, index) => (
+     <Wrapper key={index}>
       {/* Card Image */}
       <Skeleton style={{height: '150px'}}/>
 

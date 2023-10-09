@@ -43,7 +43,7 @@ const Search = ({search, setSearch}: SearchProps) => {
   return (
     <InputContainer>
       <IoSearch/>
-      <Input onChange={(e) => setSearch(e.target.value)} value={search}/>
+      <Input id="search" onChange={(e) => setSearch(e.target.value)} value={search}/>
     </InputContainer>
   )
 }
